@@ -12,6 +12,9 @@ class HelloWorld(Resource):
     def get(self):
         return {"data": "Hello World"}
 
+    def post(self):
+        return {"data": "posted"}
+
 
 # Define the Hello World endpoint
 api.add_resource(HelloWorld, "/helloworld")
