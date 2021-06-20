@@ -17,10 +17,9 @@ video_put_args.add_argument(
 
 videos = {}
 
-# abort if video doesnt exist
-
 
 def abort_if_video_id_null(video_id):
+    # abort if video doesnt exist
     if video_id not in videos:
         abort(404, message="Video id is not valid")
 
