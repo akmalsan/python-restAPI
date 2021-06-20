@@ -18,6 +18,11 @@ video_put_args.add_argument(
 videos = {}
 
 
+def abort_if_video_id_null(video_id):
+    if video_id not in videos:
+        abort("Video id is not valid")
+
+
 class Video(Resource):
     def get(self, video_id):
         return videos[video_id]
