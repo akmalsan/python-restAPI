@@ -6,8 +6,6 @@ app = Flask(__name__)
 # Wrap the app in an API
 api = Api(app)
 
-# Create a class that is a Resource, override several methods from Resource
-
 
 class HelloWorld(Resource):
     # Override the GET method
