@@ -10,7 +10,7 @@ api = Api(app)
 class HelloWorld(Resource):
     # Override the GET method
     def get(self):
-        return {"Hello World"}
+        return {"data": "Hello World"}
 
 
 # Define the Hello World endpoint
