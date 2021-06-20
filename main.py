@@ -8,9 +8,12 @@ api = Api(app)
 
 # create request parser object to parse through requests, make sure it follows the args guidelines
 video_put_args = reqparse.RequestParser()
-video_put_args.add_argument("name", type=str, help="Name of the video")
-video_put_args.add_argument("views", type=int, help="Views of the video")
-video_put_args.add_argument("likes", type=int, help="Likes of the video")
+video_put_args.add_argument(
+    "name", type=str, help="Name of the video is required", required=True)
+video_put_args.add_argument(
+    "views", type=int, help="Views of the video is required", required=True)
+video_put_args.add_argument(
+    "likes", type=int, help="Likes of the video is required", required=True)
 
 videos = {}
 
@@ -22,7 +25,9 @@ class Video(Resource):
     def put(self, video_id):
         # get all the args from video_put_args, if not sent automatically send back error message
         args = video_put_args.parse_args()
-        return {video_id: args}
+        videos[video_id] = args  # add videos
+        # 201 is a status code, stands for data created
+        return videos[video_id], 201
 
 
 # Define the Hello World endpoint
