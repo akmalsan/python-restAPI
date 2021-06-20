@@ -22,7 +22,7 @@ class Video(Resource):
     def put(self, video_id):
         # get all the args from video_put_args, if not sent automatically send back error message
         args = video_put_args.parse_args()
-        return
+        return {video_id: args}
 
 
 # Define the Hello World endpoint
