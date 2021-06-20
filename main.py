@@ -1,10 +1,27 @@
 from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource, reqparse, abort
+from flask_sqlalchemy import SQLAlchemy
 
 # Create Flask app
 app = Flask(__name__)
 # Wrap the app in an API
 api = Api(app)
+# Configure and initialize database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
+
+
+class VideoModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    views = db.Column(db.Integer, nullable=False)
+    likes = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"Video(name={name}, views={views}, likes={likes})"
+
+
+db.create_all()
 
 # create request parser object to parse through requests, make sure it follows the args guidelines
 video_put_args = reqparse.RequestParser()
