@@ -17,6 +17,8 @@ video_put_args.add_argument(
 
 videos = {}
 
+# abort if video doesnt exist
+
 
 def abort_if_video_id_null(video_id):
     if video_id not in videos:
@@ -25,6 +27,7 @@ def abort_if_video_id_null(video_id):
 
 class Video(Resource):
     def get(self, video_id):
+        abort_if_video_id_null(video_id)
         return videos[video_id]
 
     def put(self, video_id):
