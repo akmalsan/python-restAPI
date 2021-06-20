@@ -6,21 +6,19 @@ app = Flask(__name__)
 # Wrap the app in an API
 api = Api(app)
 
-names = {"tom": {"age": 19, "gender": "male"},
-         "dee": {"age": 19, "gender": "female"}}
+videos = {}
 
 
-class HelloWorld(Resource):
-    # Override the GET method
-    def get(self, name):
-        return names[name]
+class Video(Resource):
+    def get(self, video_id):
+        return videos[video_id]
 
-    def post(self):
-        return {"data": "posted"}
+    def put(self, video_id):
+        return
 
 
 # Define the Hello World endpoint
-api.add_resource(HelloWorld, "/helloworld/<string:name>")
+api.add_resource(Video, "/video/<int:video_id>")
 
 if __name__ == "__main__":
     # Run app in debug mode, see all the output and debug information
